@@ -1,7 +1,9 @@
 import express from 'express';
 import bcrypt from 'bcrypt-nodejs';
+import cors from 'cors';
 const app = express()
-const port = 3000
+const port = 3001
+
 
 const database = {
     users: [
@@ -33,6 +35,7 @@ const database = {
 }
 
 app.use(express.json())
+app.use(cors())
 
 // GET
 
@@ -57,9 +60,9 @@ app.get('/profile/:id', (req, res) => {
 
 app.post('/signIn', (req, res) => {
     // Load hash from your password DB.
-    bcrypt.compare("bacon", hash, function(err, res) {
-        // res == true
-    });
+    // bcrypt.compare("bacon", hash, function(err, res) {
+    //     // res == true
+    // });
 
     if (req.body.email === database.users[0].email &&
         req.body.password === database.users[0].password) {

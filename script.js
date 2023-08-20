@@ -31,6 +31,14 @@ const database = {
             entries: 0,
             joined: new Date()
         },
+        {
+            id: 126,
+            name: 's',
+            email: 's',
+            password: 's',
+            entries: 0,
+            joined: new Date()
+        },
     ]
 }
 
@@ -63,10 +71,9 @@ app.post('/signIn', (req, res) => {
     // bcrypt.compare("bacon", hash, function(err, res) {
     //     // res == true
     // });
-
-    if (req.body.email === database.users[0].email &&
-        req.body.password === database.users[0].password) {
-        res.json('Success')
+    if (req.body.email === database.users[3].email &&
+        req.body.password === database.users[3].password) {
+            res.json(database.users[3]);
     } else {
         res.status(400).json("error signing in")
     }
@@ -97,9 +104,10 @@ app.post('/register', (req, res) => {
 
 
 
-app.post('/image', (req, res) => {
+app.put('/image', (req, res) => {
     const { id } = req.body;
     let found = false;
+    
     database.users.forEach(user => {
         if(user.id === +id) {
             found = true

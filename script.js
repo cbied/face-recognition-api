@@ -1,8 +1,20 @@
-import express from 'express';
-import bcrypt from 'bcrypt-nodejs';
-import cors from 'cors';
+const express = require('express');
+const cors = require('cors');
+const environment = require('./environment');
+const bcrypt = require('bcrypt-nodejs');
 const app = express()
 const port = 3001
+
+const knex = require('knex')({
+    client: 'pg',
+    connection: {
+      host : '127.0.0.1',
+      port : '5432',
+      user : 'postgres',
+      password : environment.dbpassword,
+      database : 'postgres'
+    }
+});
 
 
 const database = {
@@ -81,23 +93,48 @@ app.post('/signIn', (req, res) => {
 
 app.post('/register', (req, res) => {
     const { name, email, password } = req.body;
-    let newUser;
-    bcrypt.hash(password, null, null, (err, hash) => {
-        newUser = {
-            id: +database.users[database.users.length - 1].id + 1,
-            name: name,
-            email: email,
-            password: hash,
-            entries: 0,
-            joined: new Date()
-        }
-        if(req.body.name && req.body.email && req.body.password) {
-            database.users.push(newUser)
-            res.json(database)
-        } else {
-            res.status(400).json('Registration Failed')
-        }
-    });
+    console.log(req.body)
+    const newUser = {
+        name: name,
+        email: email,
+        joined: new Date()
+    }
+
+    
+        knex('users')
+        .insert(newUser)
+        .then((data) => {
+            console.log(data)
+        })
+
+        
+    res.json(database.users[database.users.length - 1]);
+
+
+
+
+
+    // ** UPDATE FOR LOGIN DB **
+    
+    // bcrypt.hash(password, null, null, (err, hash) => {
+    //     console.log(req.body)
+    //     if(req.body.name && req.body.email) {
+    //         console.log(userInfo)
+            
+    //         // ignore only on email conflict and active is true.
+    //         // .onConflict(knex.raw('(email) where active'))
+    //         // .ignore()
+
+    //         knex('login')
+    //         .insert(newLogin)
+    //         .then((data) => {
+    //             // console.log(data)
+    //         })
+            
+    //     } else {
+    //         res.status(400).json('Registration Failed')
+    //     }
+    // });
     
     
 })

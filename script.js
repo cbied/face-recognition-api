@@ -43,6 +43,9 @@ app.post('/signIn', (req, res) => { signIn.handelSignIn(req,res,knex,bcrypt) })
 // post register user
 app.post('/register', (req,res) => { register.handleRegister(req,res,knex,bcrypt) })
 
+// post to get image url for Clarifai API
+app.post('/imageurl', (req, res) => { image.handleApiCall(req,res,knex) })
+
 ////////////////////////////////////////////////////////////////////////////
 
 // PUT

@@ -4,7 +4,6 @@ const env = require('../environment.js');
 let PAT = env.PAT;
 // Specify the correct user_id/app_id pairings
 let USER_ID = env.userId;
-// Specify app id currently being used
 let APP_ID = env.AppId;
 
 const clarifaiRequestOptions = (imageURL) => {  
@@ -44,6 +43,7 @@ const handleApiCall = async (req, res) => {
     .then(data => {
         return res.json(data)
     })
+    .catch(() => res.status(badRequest).json('error handling API call'))
 }
 
 const handleImage = (req,res,knex) => {

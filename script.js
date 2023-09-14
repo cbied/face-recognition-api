@@ -8,7 +8,7 @@ const cors = require('cors');
 const environment = require('./environment');
 const bcrypt = require('bcrypt-nodejs');
 const app = express();
-const port = 3001;
+const PORT = process.env.PORT || 3001;
 
 // Connect to db
 const knex = require('knex')({
@@ -56,4 +56,4 @@ app.put('/image', (req, res) => { image.handleImage(req,res,knex) })
 ////////////////////////////////////////////////////////////////////////////
 
 // LISTEN 
-app.listen(port, () => console.log(`Workin' Hard!`))
+app.listen(PORT, () => console.log(`Workin' Hard on port ${PORT}!`))

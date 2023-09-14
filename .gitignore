@@ -12,7 +12,7 @@
 /build
 
 # API keys
-environment.js
+# environment.js
 
 # misc
 .DS_Store

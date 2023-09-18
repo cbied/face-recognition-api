@@ -9,16 +9,17 @@ const environment = require('./environment');
 const bcrypt = require('bcrypt-nodejs');
 const app = express();
 const PORT = process.env.PORT || 3001;
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
 
 // Connect to db
 const knex = require('knex')({
     client: 'pg',
     connection: {
-      host : 'ec2-54-243-32-226.compute-1.amazonaws.com',
+      host : environment.herokuHost,
       port : '5432',
-      user : 'ihdrlzvaerzkvm',
-      password : '0eda83351b66e0b9f10e8b666700bba069cce4a6aebd34f1638140c6bfcd6d5d',
-      database : 'del3ipr7j28aqc',
+      user : environment.herokuUser,
+      password : environment.herokuDbPassword,
+      database : environment.herokuDatabase,
       ssl: true
     }
 });

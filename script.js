@@ -14,11 +14,12 @@ const PORT = process.env.PORT || 3001;
 const knex = require('knex')({
     client: 'pg',
     connection: {
-      host : '127.0.0.1',
+      host : 'ec2-54-243-32-226.compute-1.amazonaws.com',
       port : '5432',
-      user : 'postgres',
-      password : environment.dbpassword,
-      database : 'postgres'
+      user : 'ihdrlzvaerzkvm',
+      password : '0eda83351b66e0b9f10e8b666700bba069cce4a6aebd34f1638140c6bfcd6d5d',
+      database : 'del3ipr7j28aqc',
+      ssl: true
     }
 });
 

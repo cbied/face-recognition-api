@@ -24,8 +24,14 @@ const knex = require('knex')({
     }
 });
 
+const corsOptions ={
+  origin:'*', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200,
+}
+
 app.use(express.json())
-app.use(cors())
+app.use(cors(corsOptions))
 headers.append('Access-Control-Allow-Origin', 'https://cbied.github.io');
 headers.append('Access-Control-Allow-Credentials', 'true');
 

@@ -26,7 +26,7 @@ const knex = require('knex')({
 
 app.use(express.json())
 app.use(cors())
-headers.append('Access-Control-Allow-Origin', 'https://cbied.github.io/face-recognition/');
+headers.append('Access-Control-Allow-Origin', 'https://cbied.github.io');
 headers.append('Access-Control-Allow-Credentials', 'true');
 
 // GET

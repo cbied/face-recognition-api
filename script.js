@@ -8,7 +8,8 @@ const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcrypt-nodejs');
 const app = express();
-const env = process.env
+const env = require('./environment')
+// const env = process.env
 const PORT = process.env.PORT || 3001;
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 

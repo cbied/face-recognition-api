@@ -32,8 +32,6 @@ const corsOptions ={
 
 app.use(express.json())
 app.use(cors(corsOptions))
-headers.append('Access-Control-Allow-Origin', 'https://cbied.github.io');
-headers.append('Access-Control-Allow-Credentials', 'true');
 
 // GET
 

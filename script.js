@@ -26,7 +26,7 @@ const knex = require('knex')({
 
 app.use(express.json())
 app.use(cors({
-  origin: 'https://cbied.github.io',
+  origin: 'https://cbied.github.io/face-recognition/',
   methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
 }))
 

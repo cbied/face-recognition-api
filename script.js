@@ -25,7 +25,11 @@ const knex = require('knex')({
 });
 
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+  origin: ['https://cbied.github.io', 'http://localhost:3000/'],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT'],
+}))
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", '*');
   res.header("Access-Control-Allow-Credentials", true);
@@ -37,7 +41,7 @@ app.use(function(req, res, next) {
 // GET
 
 // get home route
-app.get('/', (req, res) => res.send('success!'))
+app.get('/', (req, res) => res.send('working hard!'))
 
 // get profile
 app.get('/profile/:id', (req, res) => { profile.handleProfile(req,res,knex) })

@@ -32,6 +32,7 @@ const handleRegister = (req,res,knex,bcrypt) => {
             .then(trx.commit)
             .catch(trx.rollback)
         })
+        .catch(err => console.log('register error: ---', err))
     })
 }
 

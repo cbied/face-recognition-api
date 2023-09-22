@@ -4,7 +4,7 @@ const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
 const express = require('express');
-// const cors = require('cors');
+const cors = require('cors');
 const environment = require('./environment');
 const bcrypt = require('bcrypt-nodejs');
 const app = express();
@@ -25,24 +25,7 @@ const knex = require('knex')({
 });
 
 app.use(express.json())
-//Cors Configuration - Start
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*")
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested, Content-Type, Accept Authorization"
-//   )
-//   if (req.method === "OPTIONS") {
-//     res.header(
-//       "Access-Control-Allow-Methods",
-//       "POST, PUT, PATCH, GET, DELETE"
-//     )
-//     return res.status(200).json({})
-//   }
-//   next()
-// })
-//Cors Configuration - End
-
+app.use(cors())
 
 // GET
 

@@ -3,11 +3,12 @@ const signIn = require('./controllers/signIn');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const environment = require('./environment');
 const bcrypt = require('bcrypt-nodejs');
 const app = express();
+const env = process.env
 const PORT = process.env.PORT || 3001;
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
@@ -15,20 +16,17 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const knex = require('knex')({
     client: 'pg',
     connection: {
-      host : environment.herokuHost,
+      host : env.herokuHost,
       port : '5432',
-      user : environment.herokuUser,
-      password : environment.herokuDbPassword,
-      database : environment.herokuDatabase,
+      user : env.herokuUser,
+      password : env.herokuDbPassword,
+      database : env.herokuDatabase,
       ssl: true
     }
 });
 
 app.use(express.json())
-app.use(cors({
-  origin: 'https://cbied.github.io',
-  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
-}))
+app.use(cors())
 
 // GET
 

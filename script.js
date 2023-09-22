@@ -4,12 +4,12 @@ const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
 const express = require('express');
-const cors = require('cors');
+// const cors = require('cors');
 const environment = require('./environment');
 const bcrypt = require('bcrypt-nodejs');
 const app = express();
 const PORT = process.env.PORT || 3001;
-// process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 // Connect to db
 const knex = require('knex')({
@@ -25,7 +25,23 @@ const knex = require('knex')({
 });
 
 app.use(express.json())
-app.use(cors())
+//Cors Configuration - Start
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested, Content-Type, Accept Authorization"
+  )
+  if (req.method === "OPTIONS") {
+    res.header(
+      "Access-Control-Allow-Methods",
+      "POST, PUT, PATCH, GET, DELETE"
+    )
+    return res.status(200).json({})
+  }
+  next()
+})
+//Cors Configuration - End
 
 
 // GET

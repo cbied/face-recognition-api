@@ -26,7 +26,7 @@ const knex = require('knex')({
 
 app.use(express.json())
 app.use(cors({
-  origin: ['https://cbied.github.io', 'http://localhost:3000/'],
+  origin: ['https://cbied.github.io', 'http://localhost:3000/', '127.0.0.1'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT'],
 }))

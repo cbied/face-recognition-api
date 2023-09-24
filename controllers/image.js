@@ -1,10 +1,9 @@
-const env = require('../environment.js');
-
+const env = process.env
 // PAT (property access token)
 let PAT = env.PAT;
 // Specify the correct user_id/app_id pairings
 let USER_ID = env.userId;
-let APP_ID = env.AppId;
+let APP_ID = env.appId;
 
 const clarifaiRequestOptions = (imageURL) => {  
   const raw = JSON.stringify({

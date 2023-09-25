@@ -48,7 +48,7 @@ const handleApiCall = async (req, res) => {
 const handleImage = (req,res,knex) => {
     const { id } = req.body;
     const badRequest = 400;
-    
+    console.log(id)
     // if user submits an image, update count in db
     knex('users')
     .where('id', id)

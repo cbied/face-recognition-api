@@ -5,7 +5,7 @@
   "type": "commonjs",
   "main": "script.js",
   "scripts": {
-    "start": "node script.js",
+    "start": "nodemon --legacy-watch script.js",
     "start:dev": "nodemon script.js"
   },
   "author": "Biediger",
@@ -17,6 +17,7 @@
     "express": "^4.18.2",
     "heroku": "^8.4.2",
     "knex": "^2.5.1",
+    "morgan": "^1.10.0",
     "pg": "^8.11.3"
   },
   "devDependencies": {

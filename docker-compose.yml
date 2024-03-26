@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+  # Backend API
+  face-rec-api:
+    container_name: backend
+    env_file:
+      - .env
+    build: ./
+    command: npm start
+    working_dir: /user/src/face-rec-api
+    environment:
+      - POSTGRES_USER=${herokuUser}
+      - POSTGRES_PASSWORD=${herokuDbPassword}
+      - POSTGRES_URI=${URI}
+      - POSTGRES_DB=${herokuDatabase}
+      - POSRGRES_HOST=${herokuHost}
+      # - POSTGRES_USER=postgres
+      # - POSTGRES_PASSWORD=Piper007!
+      # - POSTGRES_DB=postgres
+      # - POSRGRES_HOST=localhost
+      # - PGADMIN_DEFAULT_EMAIL=cabiediger@gmail.com
+      # - PGADMIN_DEFAULT_PASSWORD=Piper007!
+    links:
+      - postgres
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./:/user/src/face-rec-api
+
+  # Postgres
+  postgres:
+    container_name: postgres
+    # image: dpage/pgadmin4
+    # build: /postgres
+    image: postgres
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=${herokuUser}
+      - POSTGRES_PASSWORD=${herokuDbPassword}
+      - POSTGRES_URI=${URI}
+      - POSTGRES_DB=${herokuDatabase}
+      - POSRGRES_HOST=${herokuHost}
+      # - POSTGRES_USER=postgres
+      # - POSTGRES_PASSWORD=Piper007!
+      # - POSTGRES_DB=postgres
+      # - POSRGRES_HOST=localhost
+      # - PGADMIN_DEFAULT_EMAIL=cabiediger@gmail.com
+      # - PGADMIN_DEFAULT_PASSWORD=Piper007!
+    ports:
+      - "5432:5432"

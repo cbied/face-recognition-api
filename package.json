@@ -5,8 +5,8 @@
   "type": "commonjs",
   "main": "script.js",
   "scripts": {
-    "start": "nodemon --legacy-watch script.js",
-    "start:dev": "nodemon script.js"
+    "start": "node script.js",
+    "start:dev": "nodemon --legacy-watch script.js"
   },
   "author": "Biediger",
   "license": "ISC",

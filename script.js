@@ -62,6 +62,11 @@ app.get("/profile/:id", (req, res) => {
 
 // POST
 
+// post update user profile
+app.post("/profile/:id", (req, res) => {
+  profile.handleProfileUpdate(req, res, knex);
+});
+
 // post sign in user
 app.post("/signIn", (req, res) => {
   signIn.handelSignIn(req, res, knex, bcrypt);

@@ -10,19 +10,11 @@ services:
     command: npm start
     working_dir: /user/src/face-rec-api
     environment:
-      - POSTGRES_USER=${herokuUser}
-      - POSTGRES_PASSWORD=${herokuDbPassword}
       - POSTGRES_URI=${URI}
-      - POSTGRES_DB=${herokuDatabase}
-      - POSRGRES_HOST=${herokuHost}
-      # - POSTGRES_USER=postgres
-      # - POSTGRES_PASSWORD=Piper007!
-      # - POSTGRES_DB=postgres
-      # - POSRGRES_HOST=localhost
-      # - PGADMIN_DEFAULT_EMAIL=cabiediger@gmail.com
-      # - PGADMIN_DEFAULT_PASSWORD=Piper007!
+      - REDIS_URI=redis://redis:6379
     links:
       - postgres
+      - redis
     ports:
       - "3001:3001"
     volumes:
@@ -39,7 +31,6 @@ services:
     environment:
       - POSTGRES_USER=${herokuUser}
       - POSTGRES_PASSWORD=${herokuDbPassword}
-      - POSTGRES_URI=${URI}
       - POSTGRES_DB=${herokuDatabase}
       - POSRGRES_HOST=${herokuHost}
       # - POSTGRES_USER=postgres
@@ -50,3 +41,10 @@ services:
       # - PGADMIN_DEFAULT_PASSWORD=Piper007!
     ports:
       - "5432:5432"
+
+  # Redis
+  redis:
+    container_name: redis
+    image: redis
+    ports:
+      - "6379:6379"

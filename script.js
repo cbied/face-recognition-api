@@ -68,9 +68,7 @@ app.post("/profile/:id", (req, res) => {
 });
 
 // post sign in user
-app.post("/signIn", (req, res) => {
-  signIn.handelSignIn(req, res, knex, bcrypt);
-});
+app.post("/signIn", signIn.handelSignInAuthentication(knex, bcrypt));
 
 // post register user
 app.post("/register", (req, res) => {
